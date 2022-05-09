@@ -18,13 +18,13 @@ def main():
 @app.route('/gravar', methods=['POST', 'GET'])
 def gravar():
     nome = request.form['nome']
-    email = request.form['email']
-    endereco = request.form['endereco']
+    email = request.form['categoria']
+    endereco = request.form['peso']
 
     if nome and email and endereco:
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute('insert into alunos (user_name, user_email, user_address) VALUES (%s, %s, %s)',(nome, email, endereco))
+        cursor.execute('insert into alunos (user_name, user_email, user_address) VALUES (%s, %s, %s)',(nome, categoria, peso))
         conn.commit()
 
         return render_template('grava.html')
@@ -34,11 +34,11 @@ def listar():
 
         conn = mysql.connect()
         cursor = conn.cursor()
-        data = cursor.execute ('select user_name, user_email, user_address from alunos')
+        data = cursor.execute ('select user_name, user_categoria, user_peso from produtos')
         data = cursor.fetchall()
         conn.commit()
         return render_template('lista.html', datas=data)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5008))
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
