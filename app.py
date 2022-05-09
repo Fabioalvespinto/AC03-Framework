@@ -24,7 +24,7 @@ def gravar():
     if nome and email and endereco:
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute('insert into alunos (user_name, user_email, user_address) VALUES (%s, %s, %s)',(nome, categoria, peso))
+        cursor.execute('insert into alunos (user_name, user_categoria, user_peso) VALUES (%s, %s, %s)',(nome, categoria, peso))
         conn.commit()
 
         return render_template('grava.html')
