@@ -14,4 +14,4 @@ db:
   environment:
       MYSQL_ROOT_PASSWORD: mudar123
   ports:
-    - "3309:3309"
+    - "3307:3307"
